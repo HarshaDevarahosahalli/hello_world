@@ -1,0 +1,77 @@
+4. Android App that uses Check Boxes and demonstrates event handling
+on Button.
+                 MainActivity.java
+package com.example.myapplication4;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+private CheckBox chkIos, chkAndroid, chkWindows;
+private Button btnDisplay;
+@Override
+public void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+addListenerOnButton();
+}
+public void addListenerOnButton() {
+chkIos = (CheckBox) findViewById(R.id.chkIos);
+chkAndroid = (CheckBox) findViewById(R.id.chkAndroid);
+chkWindows = (CheckBox) findViewById(R.id.chkWindows);
+btnDisplay = (Button) findViewById(R.id.btnDisplay);
+btnDisplay.setOnClickListener(new OnClickListener() {
+@Override
+public void onClick(View v) {
+StringBuffer result = new StringBuffer();
+result.append("IPhone check : ").append(chkIos.isChecked());
+result.append("\nAndroid check : ").append(chkAndroid.isChecked());
+result.append("\nWindows Mobile check : ").append(chkWindows.isChecked());
+// Display the result using Toast
+Toast.makeText(MainActivity.this, result.toString(),
+Toast.LENGTH_LONG).show();
+}
+});
+}
+}
+               Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent" android:layout_height="fill_parent"
+android:orientation="vertical" >
+<CheckBox
+android:id="@+id/chkIos"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/chk_ios"/>
+<CheckBox
+android:id="@+id/chkAndroid"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/chk_android"
+android:checked="true" />
+<CheckBox
+android:id="@+id/chkWindows"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/chk_windows" />
+<Button
+android:id="@+id/btnDisplay"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/btn_display"/>
+</LinearLayout>
+                               Strings.xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">CheckBox</string>
+<string name="chk_ios">IPhone</string>
+<string name="chk_android">Android</string>
+<string name="chk_windows">Windows Mobile</string>
+<string name="btn_display">Display</string>
+<string name="action_settings">Settings</string>
+</resources>
